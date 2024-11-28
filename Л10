@@ -1,0 +1,41 @@
+// Функція затримки
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// Імітація основної обробки за допомогою Promises
+const myPromise = new Promise((resolve) => {
+    resolve("Initial value");
+});
+
+// Головна асинхронна функція
+const execute = async () => {
+    try {
+        // Отримуємо початкове значення
+        const value = await myPromise;
+        console.log("Step 1: Received initial value:", value);
+
+        // Етап 1: Імітація отримання користувача
+        await delay(1000); 
+        console.log("Step 2: Fetching user from DB...");
+        const user = { id: 1, name: "John Doe" };
+        console.log("Fetched User:", user);
+
+        // Етап 2: Перевірка пароля
+        await delay(1000); 
+        console.log("Step 3: Comparing password hash...");
+        const isPasswordCorrect = true; 
+        console.log("Password match:", isPasswordCorrect);
+
+        // Етап 3: Повернення токена
+        await delay(1000);
+        console.log("Step 4: Generating login token...");
+        const loginToken = "token123"; 
+        console.log("Login Token:", loginToken);
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+
+    console.log("This is the end of the script");
+};
+
+// Виклик функції
+execute();
